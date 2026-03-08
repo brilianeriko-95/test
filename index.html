@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Sheets Sync</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔗 GitHub ↔ Google Sheets</h1>
+      <p>Sinkronisasi PWA dengan GAS</p>
+    </header>
+
+    <section class="config">
+      <h2>Konfigurasi</h2>
+      <div class="form-group">
+        <label>GitHub Personal Access Token:</label>
+        <input type="password" id="github-token" placeholder="ghp_xxxxxxxxxxxx">
+        <button id="save-token-btn">Simpan Token</button>
+      </div>
+      
+      <div class="form-group">
+        <label>Repository:</label>
+        <input type="text" id="repo-input" value="facebook/react" placeholder="owner/repo">
+      </div>
+    </section>
+
+    <section class="actions">
+      <h2>Aksi</h2>
+      <button id="sync-btn" class="btn-primary">
+        🔄 Sync GitHub → Sheets
+      </button>
+      <button id="fetch-sheets-btn" class="btn-secondary">
+        📥 Ambil Data Sheets
+      </button>
+    </section>
+
+    <div id="loading" class="loading" style="display: none;">
+      <div class="spinner"></div>
+      <p>Memproses...</p>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <section class="data-display">
+      <h2>Data</h2>
+      <div id="data-container">
+        <p>Klik "Ambil Data Sheets" atau "Sync" untuk melihat data</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>
